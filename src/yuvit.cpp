@@ -422,7 +422,10 @@ bool Config::ParseArgs(char* args[], int count)
 
 		switch (c) {
 			case 'h':
-				goto HandleError;
+                          // goto HandleError;
+                          PrintHelp();
+                          std::exit(EXIT_SUCCESS);
+
 			case 'a':
 				appendMode = true;
 				break;
