@@ -7,7 +7,7 @@ set(PROJECT_AUTHOR "Alexander Shashkevich <stunpix@gmail.com>")
 set(PROJECT_LICENSE "LGPLv3")
 
 if(NOT CMAKE_BUILD_TYPE)
-	set(CMAKE_BUILD_TYPE "Release")
+  set(CMAKE_BUILD_TYPE "Release")
 endif()
 
 # set strict code checking
@@ -18,20 +18,20 @@ find_path(FreeImageIncludeDir NAMES FreeImage.h)
 find_library(FreeImageLib freeimage)
 
 if(FreeImageIncludeDir MATCHES "NOTFOUND" OR FreeImageLib MATCHES "NOTFOUND")
-	message(FATAL_ERROR "NOT FOUND: FreeImage.
+  message(FATAL_ERROR "NOT FOUND: FreeImage.
 	Not installed? Try install:
 	Debian: sudo apt-get install libfreeimage-dev
 	RedHat: sudo yum install freeimage-devel
 	OS X: brew install freeimage")
 else()
-	if(CMAKE_HOST_APPLE)
-		# On OS X freeimage installed under /usr/local and
-		# clang doesn't see it, so we must set paths explicitly
-		get_filename_component(FreeImageLibDir ${FreeImageLib} DIRECTORY)
-		include_directories(${FreeImageIncludeDir})
-		link_directories(${FreeImageLibDir})
-	endif()
-	message(STATUS "FreeImage: FOUND")
+  if(CMAKE_HOST_APPLE)
+    # On OS X freeimage installed under /usr/local and
+    # clang doesn't see it, so we must set paths explicitly
+    get_filename_component(FreeImageLibDir ${FreeImageLib} DIRECTORY)
+    include_directories(${FreeImageIncludeDir})
+    link_directories(${FreeImageLibDir})
+  endif()
+  message(STATUS "FreeImage: FOUND")
 endif()
 
 include_directories(${PROJECT_BINARY_DIR})
